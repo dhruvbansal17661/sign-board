@@ -1,4 +1,5 @@
 #Import necessary libraries
+import os
 import numpy as np
 from flask import Flask, render_template, Response
 import cv2
@@ -189,6 +190,7 @@ def index():
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+port = int(os.environ.get('PORT', 5000))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
